@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #15151d;
+  --surface-2: #1c1c28;
+  --border: #2a2a38;
+  --text: #f5f5fa;
+  --text-dim: #8e8ea3;
+  --accent: #7c6cf0;
+  --accent-hover: #6b5ae0;
+  --available: #22c55e;
+  --reserved: #eab308;
+  --booked: #ef4444;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at top, #14141f 0%, #0a0a0f 60%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+#root { max-width: 920px; margin: 0 auto; padding: 56px 24px; }
+
+h1 { font-size: 2.1rem; font-weight: 800; letter-spacing: -0.02em; }
+
+/* ---------- Events list ---------- */
+.events-list h1 { text-align: center; margin-bottom: 40px; }
+
+.events-list { display: flex; flex-direction: column; gap: 14px; }
+
+.event-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 26px;
+  transition: all 0.18s ease;
+}
+.event-card:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 108, 240, 0.15);
+}
+.event-card h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
+.event-card p { color: var(--text-dim); font-size: 0.9rem; }
+
+/* ---------- Event detail ---------- */
+.event-detail { display: flex; flex-direction: column; gap: 24px; }
+
+.event-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+}
+.event-header h1 { margin-bottom: 6px; }
+.event-header p { color: var(--text-dim); font-size: 0.95rem; }
+
+.seat-legend {
+  display: flex;
+  gap: 18px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+.seat-legend span { display: flex; align-items: center; gap: 6px; }
+.legend-dot { width: 12px; height: 12px; border-radius: 4px; display: inline-block; }
+.legend-dot.available { background: var(--available); }
+.legend-dot.reserved { background: var(--reserved); }
+.legend-dot.booked { background: var(--booked); }
+
+/* ---------- Seat grid ---------- */
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(54px, 1fr));
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.seat {
+  padding: 12px 0;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.seat:hover:not(:disabled) { transform: scale(1.06); }
+
+.seat.available { background: var(--available); color: #06210f; }
+.seat.reserved  { background: var(--reserved); color: #2a1f00; cursor: not-allowed; opacity: 0.85; }
+.seat.booked    { background: var(--booked); color: #2a0808; cursor: not-allowed; opacity: 0.85; }
+
+.seat.selected {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(124, 108, 240, 0.5);
+}
+
+/* ---------- Action bar / summary ---------- */
+.action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 22px;
+}
+.action-bar p { color: var(--text-dim); font-size: 0.9rem; }
+.action-bar strong { color: var(--text); }
+
+/* ---------- Buttons ---------- */
+button {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: var(--accent);
+  color: white;
+  transition: background 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
+}
+button:hover:not(:disabled) { background: var(--accent-hover); }
+button:active:not(:disabled) { transform: scale(0.97); }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ---------- Error / status messages ---------- */
+.error-msg {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
